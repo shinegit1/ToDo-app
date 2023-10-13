@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cssfile %}
+  <link rel="stylesheet" href="{% static "todo/css/forms.css" %}">
+{% endblock cssfile %}
+
+{% block content %}
+<div class="todoFormBox">
+  <h2 class='todoFormHead'>Registration Form</h2> <hr>
+  <form class="row g-3 todoForm">
+    <div class="col-md-12">
+      <label for="inputFirstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="inputCity" placeholder="Your first name">
+    </div>
+    <div class="col-md-12">
+      <label for="inputLastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="inputCity" placeholder="Your last name">
+    </div>
+    <div class="col-md-12">
+      <label for="inputEmail" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="Eg: example@gmail.com">
+    </div>
+    <div class="col-md-12">
+      <label for="inputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword1" placeholder="Create your password">
+    </div>
+    <div class="col-md-12">
+      <label for="inputPassword2" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="inputPassword2" placeholder="Re-enter the same password">
+    </div>
+    
+    
+      <div class="col formButton">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    
+  </form>
+</div>
+
+{% endblock content %}

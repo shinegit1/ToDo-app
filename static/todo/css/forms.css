@@ -1,0 +1,26 @@
+.todoFormBox{
+    width: 50%;
+    margin: 3% auto;
+    background-color: rgb(246, 226, 208);
+    color: rgb(86, 57, 20);
+    padding: 20px;
+    border-radius: 10px;
+}
+.todoFormHead{
+    text-align: center;
+    font-weight: bold;
+}
+
+.todoForm{
+    margin-top: 10px;
+}
+
+.formButton{
+    margin-top: 20px;
+    text-align: center;
+}
+/* CSS for Signup form elements */
+
+
+
+/* CSS for Login form elements */

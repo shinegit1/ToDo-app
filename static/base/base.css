@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(101, 55, 13);
+    color: aliceblue;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav{
+    margin-top: 10px;
+    background-color: rgb(251, 214, 180);
+    border-radius: 5px;
+    padding: 6px 0px;
+}
+
+.nav-link, .nav-link:visited{
+    color: rgb(60, 40, 13);
+}
+.nav-link:hover{
+    color: rgb(159, 122, 74);
+    text-decoration-line: underline;
+}
+
+/* css for home page elements */
+.homeTodo{
+    width: 80%;
+    margin: 3% auto;
+    /* border: 1px solid yellow; */
+    padding: 10px 50px;
+}
+.homeTodo h2{
+    text-align: center;
+}
+
+.homeTodoBox{
+    background-color: rgb(246, 226, 208);
+    margin-top: 20px;
+    color: rgb(86, 57, 20);
+    padding: 20px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.contentBox{
+    background-color: rgb(246, 226, 208);
+    width: 80%;
+    color: rgb(86, 57, 20);
+    padding: 10x;
+    margin: 3% auto;
+}
