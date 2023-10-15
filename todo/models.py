@@ -4,11 +4,20 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 import enum
+from django.contrib.auth.validators import ASCIIUsernameValidator
 
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    username = models.CharField(blank=True, null=True)
+    username_validator = ASCIIUsernameValidator()
+    username = models.CharField(_("username"),
+                                max_length=150,
+                                unique=True,
+                                help_text=_("Required. letters, digits and @/./+/-/_ only."),
+                                validators=[username_validator],
+                                error_messages={
+                                    "unique": _("A user with that username already exists."),
+                                }, )
     email = models.EmailField(_("email address"),
                               unique=True,
                               error_messages={

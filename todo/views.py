@@ -10,11 +10,11 @@ class HomeView(TemplateView):
 
 # Create Views for Authentication
 class LoginAPIView(TemplateView):
-    template_name ='auth/login.html'
+    template_name ='registration/login.html'
 
 
 class SignupView(TemplateView):
-    template_name = 'auth/signup.html'
+    template_name = 'registration/signup.html'
 
 
 class LogoutView(TemplateView):

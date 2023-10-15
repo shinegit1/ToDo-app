@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-
+AUTH_USER_MODEL = "todo.CustomUser"
 WSGI_APPLICATION = 'todo_project.wsgi.application'
 
 
