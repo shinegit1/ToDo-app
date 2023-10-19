@@ -26,16 +26,18 @@
     <body>
         <div class="container">
             <!-- display navbar -->
-            {% block navbar %}
-                {% include "todo/components/navbar.html" %}
-            {% endblock navbar %}
-            <!-- display notification message -->
-            {% block message %}
-            {% endblock message %}
-            <!-- dispay content -->
-            {% block content %}
+            <div class="navbarBox">
+                {% include "components/navbar.html" %}
+            </div>
+            
+            <div class="main">
+                <!-- display notification message -->
+                {% block message %}{% endblock message %}
+                <!-- dispay content -->
+                {% block content %}
 
-            {% endblock content %}
+                {% endblock content %}
+            </div>
         </div>
 
         {% block jsfile %}

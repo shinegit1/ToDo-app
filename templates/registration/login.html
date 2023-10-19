@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %} Login | Todo {% endblock title %}
+
 {% block cssfile %}
   <link rel="stylesheet" href="{% static "todo/css/forms.css" %}">
 {% endblock cssfile %}
 
 {% block content %}
-<!-- do all html css here -->
-<div class="todoFormBox">
-  <h2 class='todoFormHead'>Login Form</h2> <hr>
-  <form class="row g-3 todoForm">
-    <div class="col-md-12">
-      <label for="inputEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="Eg: example@gmail.com">
-    </div>
-    <div class="col-md-12">
-      <label for="inputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword1" placeholder="Enter your password">
-    </div>
-    
-    <div class="col formButton">
-    <button type="submit" class="btn btn-primary">Login</button>
-    </div>
-    
-  </form>
-</div>
+  <!-- do all html css here -->
+  <div class="todoFormBox">
+    <h2 class='todoFormHead'>Login Form</h2> <hr>
+    <form class="row g-3 todoForm" method="post" novalidate> {% csrf_token %}
+      <div class="col-md-12">
+        <label for="inputEmail" class="form-label">Email</label>
+        {{form.username}}
+        <small class='text-danger'>{{form.username.errors|striptags}}</small>
+      </div>
+      <div class="col-md-12">
+        <label for="inputPassword1" class="form-label">Password</label>
+        {{form.password}}
+        <small class='text-danger'>{{form.password.errors|striptags}}</small>
+      </div>
+
+      <div class="col formButton">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+      {% include "components/form_error.html" %}
+    </form>
+  </div>
 
 {% endblock content %}
