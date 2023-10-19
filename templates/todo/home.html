@@ -1,5 +1,13 @@
 {% extends "base.html" %}
-{% block cssfile %}{% endblock cssfile %}
+{% block title%} Home Page {% endblock title%}
+{% block cssfile %}
+
+{% endblock cssfile %}
+
+{% block message %}
+    {% include "components/message.html" %}
+{% endblock message %}
+
 {% block content %}
 <div> 
     <div class="homeTodo">

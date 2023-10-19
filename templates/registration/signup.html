@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %} SignUp | Todo {% endblock title %}
+
 {% block cssfile %}
   <link rel="stylesheet" href="{% static "todo/css/forms.css" %}">
 {% endblock cssfile %}
@@ -7,26 +10,27 @@
 {% block content %}
 <div class="todoFormBox">
   <h2 class='todoFormHead'>Registration Form</h2> <hr>
-  <form class="row g-3 todoForm">
+  <form class="row g-3 todoForm" method="post" nonvalidate> {% csrf_token %}
     <div class="col-md-12">
       <label for="inputFirstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="Your first name">
+      {{form.first_name}}
+      <small class='text-danger'>{{form.first_name.errors|striptags}}</small>
     </div>
     <div class="col-md-12">
       <label for="inputLastName" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="Your last name">
+      {{form.last_name}}
     </div>
     <div class="col-md-12">
       <label for="inputEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="Eg: example@gmail.com">
+      {{form.email}}
     </div>
     <div class="col-md-12">
       <label for="inputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword1" placeholder="Create your password">
+      {{form.password1}}
     </div>
     <div class="col-md-12">
       <label for="inputPassword2" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="inputPassword2" placeholder="Re-enter the same password">
+      {{form.password2}}
     </div>
     
     
