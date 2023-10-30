@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
-import enum
+from django.utils.timezone import datetime
 
 
 # create your custom user manager.
@@ -53,21 +53,20 @@ class CustomUser(AbstractUser):
     def clean(self):
         self.email = self.__class__.objects.normalize_email(self.email).lower()
         super().clean()
-
-
-class TodoTaskStatus(enum.Enum):
-    ASSIGNED = 'ASSIGNED'
-    COMPLETED = 'COMPLETED'
-
-    @classmethod
-    def choices(cls):
-        return tuple((i.name, i.value) for i in cls)
+    
+    def __str__(self) -> str:
+        return f"{self.email}"
 
 
 class TodoTask(models.Model):
-    title = models.CharField(max_length=200)
     description = models.TextField()
     created_date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, db_index=True)
     submitted_date = models.DateTimeField(null=True, blank=True)
-    status = models.CharField(max_length=20, choices=TodoTaskStatus.choices())
+    status = models.CharField(max_length=20)
+    end_date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self) -> str:
+        return f"{self.user} {self.title}"
+

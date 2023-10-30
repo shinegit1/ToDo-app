@@ -2,7 +2,10 @@ from django import forms
 from todo.models import CustomUser, TodoTask
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate
+import enum
+from django.core.exceptions import ValidationError
+from django.utils.timezone import datetime
+
 
 
 # User login forms here.
@@ -52,7 +55,30 @@ class UserSignupForm(UserCreationForm):
         return email
 
 
-class CreateTodoTaskForm(forms.ModelForm):
+class TodoTaskStatus(enum.Enum):
+    SELECT = 'Select Option'
+    INPROGRESS = 'In-Progress'
+    COMPLETED = 'Complete'
+
+    @classmethod
+    def choices(cls):
+        return tuple((i.name, i.value) for i in cls)
+
+
+class TodoTaskForm(forms.ModelForm):
     class Meta:
         model = TodoTask
-        fields = []
+        fields = ['description', 'status', 'end_date', 'time']
+        widgets ={
+            'description':forms.Textarea(
+            attrs={'class': 'form-control', 'placeholder': 'Enter a brief detail about the task', 'rows':"6"}),
+            'status':forms.Select(attrs={'class': 'form-select'}, choices=TodoTaskStatus.choices()),
+            'end_date':forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'yyyy-mm-dd'}),
+            'time':forms.TimeInput(attrs={'class': 'form-control','type': 'time'})
+        }
+        error_messages={
+            'description':{'required': 'Required. Please enter description'},
+            'end_date':{'required': "Required. Please select date"},
+            'time':{'required': "Required. Please select time"}
+        }
+    
