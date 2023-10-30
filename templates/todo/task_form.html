@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}New Task | Todo{% endblock title %}
+{% block cssfile %}
+    <link rel="stylesheet" href="{% static "todo/css/task_form.css" %}">
+{% endblock cssfile %}
+
+{% block message %}
+    {% include "components/message.html" %}
+{% endblock message %}
+
+{% block content %}
+  <div class="outerFormLayer">
+    {% if task %}
+    <h4>Update Your Task</h4> <hr>
+    {% else %}
+    <h4>Create A New Task</h4> <hr>
+    {% endif %}
+      <form class="row g-3" method="post"> {% csrf_token %}
+        <div class="col-md-12">
+          <label for="id_description" class="form-label">Task Description:</label>
+          {{form.description}}
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="id_status" class="from-label">Task Status:</label>
+          {{form.status}}
+        </div>
+        <p class="mb-3">Select date or time to complete this task:</p>
+          <div class="col-md-6">
+            <div class="input-group date" data-date-format="yyyy-mm-dd">
+              <div class="input-group-text">Date</div>
+              {{form.end_date}}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <div class="input-group-text">Time</div>
+              {{form.time}}
+            </div>
+          </div>
+            
+        <div class="row g-3">
+          <button type="submit" class="btn btn-danger">Save The Task</button>
+        </div>
+      </form>
+  </div>
+{% endblock content %}

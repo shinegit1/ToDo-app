@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import gettext_lazy as _
-from todo.models import CustomUser
+from todo.models import CustomUser, TodoTask
 
 
 # Register your models here.
@@ -25,3 +25,7 @@ class UserAdmin(DjangoUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
+
+@admin.register(TodoTask)
+class TodoTaskAdmin(admin.ModelAdmin):
+    pass

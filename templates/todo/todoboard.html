@@ -1,14 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} TodoBoard | Todo {% endblock title %}
-{% block cssfile %}{% endblock cssfile %}
+{% block cssfile %}
+    <link rel="stylesheet" href="{% static "base/all.css" %}">
+{% endblock cssfile %}
 
 {% block message %}
     {% include "components/message.html" %}
 {% endblock message %}
 
 {% block content %}
-    <div class="taskboardBox">
-        
-        <h2>Task Board</h2>
-    </div>
+<h4 class="createTaskTab">This is Your Todo Book. Add a New Task: 
+  <a type="button" class="btn btn-light" href=" {% url "todo:CreateTodoTask" %} ">Create</a></h4> <hr>
+  <div class="todoboardBox">
+      <h5>Your Task List:</h5>
+      {% if object_list %}
+        {% for tasks in object_list %}
+          <table class="table table-bordered">
+            <thead class="table-danger">
+              <tr>
+                <th scope="col" style="width:6%">ID</th>
+                <th scope="col" style="width:50%">Description</th>
+                <th scope="col" style="width:10%">Status</th>
+                <th scope="col" style="width:15%">Working Period </th>
+                <th scope="col" style="width:15%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> {{tasks.id}} </th>
+                <td> {{tasks.description}} </td>
+                <td> {{tasks.status}} </td>
+                <td> {{tasks.end_date}} {{tasks.time}} </td>
+                <td> 
+                  <a href=" {% url "todo:UpdateTodoTask" pk=tasks.id %} " class="btn btn-warning">Edit</a> &nbsp;
+                  <a href=" {% url "todo:DeleteTodoTask" pk=tasks.id %} " class="btn btn-danger">Delete</a> </td>
+              </tr>
+            </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <p>No Todo task data</p>
+      {% endif %}
+  </div>
 {% endblock content %}
