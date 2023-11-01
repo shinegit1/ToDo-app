@@ -15,12 +15,12 @@
       <div class="col-md-12">
         <label for="inputEmail" class="form-label">Email</label>
         {{form.username}}
-        <small class='text-danger'>{{form.username.errors|striptags}}</small>
+        <small class='text-danger formError'>{{form.username.errors|striptags}}</small>
       </div>
       <div class="col-md-12">
         <label for="inputPassword1" class="form-label">Password</label>
         {{form.password}}
-        <small class='text-danger'>{{form.password.errors|striptags}}</small>
+        <small class='text-danger formError'>{{form.password.errors|striptags}}</small>
       </div>
 
       <div class="col formButton">

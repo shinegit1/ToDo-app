@@ -67,6 +67,4 @@ class TodoTask(models.Model):
     end_date = models.DateField()
     time = models.TimeField()
 
-    def __str__(self) -> str:
-        return f"{self.user} {self.title}"
 
