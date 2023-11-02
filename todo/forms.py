@@ -14,7 +14,8 @@ class LoginForm(AuthenticationForm):
         attrs={'class': 'form-control', 'placeholder': 'eg: example@gmail.com'}),
         error_messages={'required': 'Required. Please enter your email ID'})
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Your password'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Your password'}),
+        strip= False, error_messages={'required': 'Required. Please enter your password'})
 
 
 # User sign up form here
@@ -26,12 +27,12 @@ class UserSignupForm(UserCreationForm):
                                 widget=forms.PasswordInput(attrs={
                                     'class': 'form-control', 
                                     'placeholder': 'Type unique password'}), 
-                                strip=False)
+                                strip=False, error_messages={'required': 'Required. Please create password'})
     password2 = forms.CharField(label='Confirm Password',
                                 widget=forms.PasswordInput(attrs={
                                     'class': 'form-control', 
                                     'placeholder': 'Re-type the password'}),
-                                strip= False)
+                                strip= False, error_messages={'required': 'Required. Please re-enter the password'})
     
 
     class Meta:
@@ -43,15 +44,13 @@ class UserSignupForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'eg: example@gmail.com'}),
         }
         error_messages = {
-            'first_name': {'required': 'Required. Please enter your first name'},
-            'last_name': {'required': 'Required. Please enter your last name'},
-            'email': {'required': 'Required. Please enter your email ID'},
+            'email': {'required': 'Required. Please enter your email ID'}
         }
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
         if CustomUser.objects.filter(email__iexact=email).exists():
-            self.add_error("email", _("A user with this email already exists."))
+            self.add_error("email", _("Error: A user with this email already exists."))
         return email
 
 
@@ -79,6 +78,7 @@ class TodoTaskForm(forms.ModelForm):
         error_messages={
             'description':{'required': 'Required. Please enter description'},
             'end_date':{'required': "Required. Please select date"},
+            'status':{'required': "Required. Please select an option"},
             'time':{'required': "Required. Please select time"}
         }
     

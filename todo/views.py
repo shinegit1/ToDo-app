@@ -9,7 +9,7 @@ from todo.models import TodoTask
 
 
 # home Views
-class HomeView(TemplateView):
+class HomePageView(TemplateView):
     template_name = 'todo/home.html'
 
 

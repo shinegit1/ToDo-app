@@ -1,20 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %} SignUp | Todo {% endblock title %}
-
 {% block cssfile %}
   <link rel="stylesheet" href="{% static "todo/css/forms.css" %}">
 {% endblock cssfile %}
-
+{% block message %}
+    {% include "components/message.html" %}
+{% endblock message %}
 {% block content %}
 <div class="todoFormBox">
   <h2 class='todoFormHead'>Registration Form</h2> <hr>
-  <form class="row g-3 todoForm" method="post" nonvalidate> {% csrf_token %}
+  <form action="" class="row g-3 todoForm" method="post" novalidate autocomplete='off'> {% csrf_token %}
     <div class="col-md-12">
-      <label for="inputFirstName" class="form-label">First Name</label>
+      <label for="id_first_name" class="form-label">First Name</label>
       {{form.first_name}}
-      <small class='text-danger'>{{form.first_name.errors|striptags}}</small>
     </div>
     <div class="col-md-12">
       <label for="inputLastName" class="form-label">Last Name</label>
@@ -23,21 +22,23 @@
     <div class="col-md-12">
       <label for="inputEmail" class="form-label">Email</label>
       {{form.email}}
+      <small class='text-danger formError'>{{form.email.errors|striptags}}</small>
     </div>
     <div class="col-md-12">
       <label for="inputPassword1" class="form-label">Password</label>
       {{form.password1}}
+      <small class='text-danger formError'>{{form.password1.errors|striptags}}</small>
     </div>
     <div class="col-md-12">
       <label for="inputPassword2" class="form-label">Confirm Password</label>
       {{form.password2}}
+      <small class='text-danger formError'>{{form.password2.errors|striptags}}</small>
     </div>
     
-    
-      <div class="col formButton">
-        <button type="submit" class="btn btn-primary">Register</button>
-      </div>
-    
+    <div class="col formButton">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    {% include 'components/form_error.html' %}
   </form>
 </div>
 
