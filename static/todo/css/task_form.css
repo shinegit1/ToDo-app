@@ -1,0 +1,20 @@
+.outerFormLayer{
+    width: 60%;
+    margin: 3% auto;
+    padding: 40px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: #833f00;
+}
+
+.outerFormLayer h4{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.0em;
+    text-transform: uppercase;
+   
+}
+
+.outerFormLayer label, .outerFormLayer p{
+    font-weight: lighter;
+}
