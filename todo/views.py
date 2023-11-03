@@ -1,11 +1,10 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, RedirectView, ListView, UpdateView, FormView, DeleteView
+from django.views.generic import TemplateView, CreateView, RedirectView, ListView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from todo.forms import UserSignupForm, TodoTaskForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import logout, authenticate, login
 from todo.models import TodoTask
-
 
 
 # home Views
@@ -47,11 +46,12 @@ class LogoutView(LoginRequiredMixin, RedirectView, SuccessMessageMixin):
         """
         logout(self.request)
         return super(LogoutView, self).get_redirect_url(*args, **kwargs)
-    
+
 
 # Todo Task views
 class TodoboardView(LoginRequiredMixin, ListView, TemplateView):
     template_name = 'todo/todoboard.html'
+
     def get_context_data(self, **kwargs):
         queryset = kwargs.pop('object_list', None)
         if queryset is None:
@@ -61,7 +61,7 @@ class TodoboardView(LoginRequiredMixin, ListView, TemplateView):
 
 
 class CreateTodoTaskView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model= TodoTask
+    model = TodoTask
     template_name = 'todo/task_form.html'
     form_class = TodoTaskForm
     success_url = reverse_lazy('todo:TodoboardPage')
@@ -86,8 +86,8 @@ class UpdateTodoTaskView(LoginRequiredMixin, UpdateView, SuccessMessageMixin):
         context["task"] = TodoTask.objects.get(id=self.kwargs['pk'])
         return context
 
-    
-class DeleteTodoView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+
+class DeleteTodoTaskView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = TodoTask
     success_url = reverse_lazy('todo:TodoboardPage')
     success_message = "Your task deleted successfully"
@@ -96,5 +96,5 @@ class DeleteTodoView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return self.delete(request, *args, **kwargs)
 
 
-class AboutView(TemplateView):
+class AboutPageView(TemplateView):
     template_name = 'todo/about.html'

@@ -3,9 +3,6 @@ from todo.models import CustomUser, TodoTask
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 import enum
-from django.core.exceptions import ValidationError
-from django.utils.timezone import datetime
-
 
 
 # User login forms here.
@@ -15,7 +12,7 @@ class LoginForm(AuthenticationForm):
         error_messages={'required': 'Required. Please enter your email ID'})
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Your password'}),
-        strip= False, error_messages={'required': 'Required. Please enter your password'})
+        strip=False, error_messages={'required': 'Required. Please enter your password'})
 
 
 # User sign up form here
@@ -25,15 +22,14 @@ class UserSignupForm(UserCreationForm):
         """
     password1 = forms.CharField(label='Password',
                                 widget=forms.PasswordInput(attrs={
-                                    'class': 'form-control', 
-                                    'placeholder': 'Type unique password'}), 
+                                    'class': 'form-control',
+                                    'placeholder': 'Type unique password'}),
                                 strip=False, error_messages={'required': 'Required. Please create password'})
     password2 = forms.CharField(label='Confirm Password',
                                 widget=forms.PasswordInput(attrs={
-                                    'class': 'form-control', 
+                                    'class': 'form-control',
                                     'placeholder': 'Re-type the password'}),
-                                strip= False, error_messages={'required': 'Required. Please re-enter the password'})
-    
+                                strip=False, error_messages={'required': 'Required. Please re-enter the password'})
 
     class Meta:
         model = CustomUser
@@ -68,17 +64,16 @@ class TodoTaskForm(forms.ModelForm):
     class Meta:
         model = TodoTask
         fields = ['description', 'status', 'end_date', 'time']
-        widgets ={
-            'description':forms.Textarea(
-            attrs={'class': 'form-control', 'placeholder': 'Enter a brief detail about the task', 'rows':"6"}),
-            'status':forms.Select(attrs={'class': 'form-select'}, choices=TodoTaskStatus.choices()),
-            'end_date':forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'yyyy-mm-dd'}),
-            'time':forms.TimeInput(attrs={'class': 'form-control','type': 'time'})
+        widgets = {
+            'description': forms.Textarea(
+                attrs={'class': 'form-control', 'placeholder': 'Enter a brief detail about the task', 'rows': "6"}),
+            'status': forms.Select(attrs={'class': 'form-select'}, choices=TodoTaskStatus.choices()),
+            'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'yyyy-mm-dd'}),
+            'time': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'})
         }
-        error_messages={
-            'description':{'required': 'Required. Please enter description'},
-            'end_date':{'required': "Required. Please select date"},
-            'status':{'required': "Required. Please select an option"},
-            'time':{'required': "Required. Please select time"}
+        error_messages = {
+            'description': {'required': 'Required. Please enter description'},
+            'end_date': {'required': "Required. Please select date"},
+            'status': {'required': "Required. Please select an option"},
+            'time': {'required': "Required. Please select time"}
         }
-    
