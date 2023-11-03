@@ -1,34 +1,34 @@
 <ul class="nav nav-pills nav-fill">
     {% if request.user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:TodoboardPage" %}">Todoboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:LoginPage" %}">Progress</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:AboutPage" %}">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:Logout" %}">Logout</a>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-light" aria-disabled="true"> {{request.user.get_full_name}} </button>
-      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:TodoboardPage' %}">Todoboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:LoginPage' %}">Progress</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:AboutPage' %}">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:Logout' %}">Logout</a>
+    </li>
+    <li class="nav-item">
+        <button class="btn btn-light" aria-disabled="true"> {{request.user.get_full_name}}</button>
+    </li>
     {% else %}
-      <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url "todo:HomePage" %}">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:LoginPage" %}">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:SignupPage" %}">Signup</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url "todo:AboutPage" %}">About</a>
-      </li>
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'todo:HomePage' %}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:LoginPage' %}">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:SignupPage' %}">Signup</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:AboutPage' %}">About</a>
+    </li>
     {% endif %}
-    
-    
-  </ul>
+
+
+</ul>

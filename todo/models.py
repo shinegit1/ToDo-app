@@ -7,7 +7,7 @@ from django.utils.timezone import datetime
 # create your custom user manager.
 class CustomUserManager(BaseUserManager):
     use_in_migrations = True
-    
+
     def _create_user(self, email, password, **extra_fields):
         """Create and save a User with the given email and password."""
         if not email:
@@ -53,7 +53,7 @@ class CustomUser(AbstractUser):
     def clean(self):
         self.email = self.__class__.objects.normalize_email(self.email).lower()
         super().clean()
-    
+
     def __str__(self) -> str:
         return f"{self.email}"
 
@@ -66,5 +66,3 @@ class TodoTask(models.Model):
     status = models.CharField(max_length=20)
     end_date = models.DateField()
     time = models.TimeField()
-
-

@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 {% block title%} Home Page {% endblock title%}
-{% block cssfile %}
-
-{% endblock cssfile %}
-
 {% block message %}
-    {% include "components/message.html" %}
+{% include "components/message.html" %}
 {% endblock message %}
 
 {% block content %}
-<div> 
+<div>
     <div class="homeTodo">
         <h2>Todo App - Keep Your Task List</h2>
         <div class="homeTodoBox">
@@ -17,7 +13,7 @@
             </p>
             <span><u>Go to task board</u> - 
                 <button type="button" class="btn btn-light">Click Me</button>
-            </span> 
+            </span>
         </div>
     </div>
 </div>
