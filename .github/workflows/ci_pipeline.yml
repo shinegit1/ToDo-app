@@ -31,3 +31,10 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+
+  Development:
+    # this job will only run if the PR has been merged
+    runs-on: ubuntu-latest
+    if:
+      contains('refs/heads/develop', github.ref )
+    needs: [ tests ]
