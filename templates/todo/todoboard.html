@@ -2,45 +2,48 @@
 {% load static %}
 {% block title %} TodoBoard | Todo {% endblock title %}
 {% block cssfile %}
-    <link rel="stylesheet" href="{% static "base/all.css" %}">
+<link rel="stylesheet" href="{% static 'base/all.css' %}">
 {% endblock cssfile %}
 
 {% block message %}
-    {% include "components/message.html" %}
+{% include "components/message.html" %}
 {% endblock message %}
 
 {% block content %}
-<h4 class="createTaskTab">This is Your Todo Book. Add a New Task: 
-  <a type="button" class="btn btn-light" href=" {% url "todo:CreateTodoTask" %} ">Create</a></h4> <hr>
-  <div class="todoboardBox">
-      <h5>Your Todo Task List Table</h5>
-          <table class="table table-bordered">
-            <thead class="table-danger">
-              <tr style="text-align:center;">
-                <th scope="col" style="width:6%">ID</th>
-                <th scope="col" style="width:50%">Description</th>
-                <th scope="col" style="width:10%">Status</th>
-                <th scope="col" style="width:15%">Working Period </th>
-                <th scope="col" style="width:15%">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% if object_list %}
-                {% for tasks in object_list %}
-                  <tr>
-                    <th scope="row" style="text-align:center;"> {{forloop.counter}} </th>
-                    <td> {{tasks.description}} </td>
-                    <td style="text-align:center;"> {{tasks.status}} </td>
-                    <td style="text-align:center;"> {{tasks.end_date}} {{tasks.time}} </td>
-                    <td style="text-align:center;"> 
-                      <a href=" {% url "todo:UpdateTodoTask" pk=tasks.id %} " class="btn btn-warning">Edit</a> &nbsp;
-                      <a href=" {% url "todo:DeleteTodoTask" pk=tasks.id %} " class="btn btn-danger">Delete</a> </td>
-                  </tr>
-                {% endfor %}
-              {% else %}
-                <tr><td colspan="5" style="color:brown; text-align:center; font-weight:bold">No Todo task data</td></tr>
-              {% endif %}
-            </tbody>
-          </table>
-  </div>
+<h4 class="createTaskTab">This is Your Todo Book. Add a New Task:
+    <a type="button" class="btn btn-light" href=" {% url 'todo:CreateTodoTask' %} ">Create</a></h4>
+<hr>
+<div class="todoboardBox">
+    <h5>Your Todo Task List Table</h5>
+    <table class="table table-bordered">
+        <thead class="table-danger">
+        <tr style="text-align:center;">
+            <th scope="col" style="width:6%">ID</th>
+            <th scope="col" style="width:50%">Description</th>
+            <th scope="col" style="width:10%">Status</th>
+            <th scope="col" style="width:15%">Working Period</th>
+            <th scope="col" style="width:15%">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if object_list %}
+        {% for tasks in object_list %}
+        <tr>
+            <th scope="row" style="text-align:center;"> {{forloop.counter}}</th>
+            <td> {{tasks.description}}</td>
+            <td style="text-align:center;"> {{tasks.status}}</td>
+            <td style="text-align:center;"> {{tasks.end_date}} {{tasks.time}}</td>
+            <td style="text-align:center;">
+                <a href=" {% url 'todo:UpdateTodoTask' pk=tasks.id %} " class="btn btn-warning">Edit</a> &nbsp;
+                <a href=" {% url 'todo:DeleteTodoTask' pk=tasks.id %} " class="btn btn-danger">Delete</a> </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="5" style="color:brown; text-align:center; font-weight:bold">No Todo task data</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
