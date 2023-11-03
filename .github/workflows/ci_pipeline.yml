@@ -35,6 +35,4 @@ jobs:
   Development:
     # this job will only run if the PR has been merged
     runs-on: ubuntu-latest
-    if:
-      contains('refs/heads/develop', github.ref )
     needs: [ tests ]
