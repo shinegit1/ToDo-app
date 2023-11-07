@@ -5,7 +5,10 @@ from todo.forms import UserSignupForm, TodoTaskForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import logout, authenticate, login
 from todo.models import TodoTask
+import logging
 
+
+logger = logging.getLogger(__name__)
 
 # home Views
 class HomePageView(TemplateView):
@@ -26,8 +29,8 @@ class SignupView(CreateView, SuccessMessageMixin):
             try:
                 user = authenticate(username=username, password=password)
                 login(self.request, user)
-            except Exception:
-                raise Exception("Your details is incorrect. Please enter correct details.")
+            except Exception as e:
+                logger.error("Your details is incorrect. Please enter correct details." + str(e))
         return response
 
 
@@ -56,7 +59,7 @@ class TodoboardView(LoginRequiredMixin, ListView, TemplateView):
         queryset = kwargs.pop('object_list', None)
         if queryset is None:
             self.object_list = TodoTask.objects.filter(user=self.request.user)
-        ...
+
         return super().get_context_data(**kwargs)
 
 

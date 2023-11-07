@@ -125,3 +125,28 @@ LOGIN_URL = reverse_lazy('todo:LoginPage')
 
 AUTH_USER_MODEL = "todo.CustomUser"
 AUTHENTICATION_BACKENDS = ["todo.backends.EmailPasswordAuthenticationBackend"]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',  # refers to string.format() style
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}

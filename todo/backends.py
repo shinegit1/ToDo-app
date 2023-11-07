@@ -1,6 +1,8 @@
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
+import logging
 
+logger = logging.getLogger(__name__)
 UserModel = get_user_model()
 
 
@@ -16,7 +18,7 @@ class EmailPasswordAuthenticationBackend(ModelBackend):
             return
         try:
             user = UserModel.objects.get(email__iexact=username)
-            # Todo: add logging
+            logger.info(user)
         except UserModel.DoesNotExist:
             UserModel().set_password(password)
         else:
