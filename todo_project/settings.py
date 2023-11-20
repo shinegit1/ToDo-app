@@ -81,12 +81,15 @@ WSGI_APPLICATION = 'todo_project.wsgi.application'
 #     }
 # }
 
+# default database username and password for development
+DB_USERNAME='root'
+DB_PASSWORD='password1'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todotaskdb',
-        'USER': 'root',
-        'PASSWORD': 'admin',
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
         'HOST':'localhost',
         'PORT':'3306',
     }
