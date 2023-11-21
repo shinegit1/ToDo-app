@@ -19,7 +19,9 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env()
+# Read environment variables from the .env file
+env.read_env()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -89,7 +91,7 @@ WSGI_APPLICATION = 'todo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_URL'),
+        'NAME': env('MYSQL_DATABASE'),
         'USER': env('MYSQL_USER'),
         'PASSWORD': env('MYSQL_PASSWORD'),
         'HOST': 'localhost',
