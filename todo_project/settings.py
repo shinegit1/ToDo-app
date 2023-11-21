@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
@@ -87,11 +87,11 @@ DB_PASSWORD='password1'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'todotaskdb',
-        'USER': DB_USERNAME,
-        'PASSWORD': DB_PASSWORD,
-        'HOST':'localhost',
-        'PORT':'3306',
+        'NAME': os.getenv('MYSQL_DATABASE'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
