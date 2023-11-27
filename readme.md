@@ -3,6 +3,8 @@
 #### Project name: Todo_project
 #### Project App: Todo
 
+![Demo Page](static/todo/image/todo.png)
+
 Contribute in the project as follows:
 - git clone *project link*
 - Create feature branch in your local main branch
